@@ -1,0 +1,20 @@
+# Création du model Task en ligne de commande
+
+rails generate model Task title:string details:text completed:boolean
+
+# modification du fichier migration pour ajouter la valeur par défaut
+class CreateTasks < ActiveRecord::Migration[7.1]
+  def change
+    create_table :tasks do |t|
+      t.string :title
+      t.text :details
+      t.boolean :completed, default: false
+
+      t.timestamps
+    end
+  end
+end
+
+# Génération de la base de données
+
+rails db:migrate
